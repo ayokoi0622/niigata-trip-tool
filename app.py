@@ -119,4 +119,4 @@ with st.sidebar:
     # Yahoo!天気 新潟市のページ
     st.link_button("☀️ Yahoo!天気（新潟市）", "https://weather.yahoo.co.jp/weather/jp/15/5410.html")
     st.write("---")
-    st.write("Albirex Niigata Spirit! 🦢")
+    
