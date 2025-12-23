@@ -2,7 +2,7 @@ import streamlit as st
 
 # --- 全体のデザイン設定 ---
 st.set_page_config(
-    page_title="新潟1泊2日プランナー",
+    page_title="新潟1泊2日プラン",
     page_icon="🦢",
     layout="centered"
 )
