@@ -80,30 +80,30 @@ tab1, tab2, tab3, tab4 = st.tabs(["📋 プラン", "🧳 持ち物", "💰 予�
 with tab1:
     st.subheader("⏰ スケジュール")
     with st.expander("📅 1日目の流れ（12/27）"):
-        st.write("・11:00 新潟駅着 → ぽんしゅ館で利き酒🍶")
-        st.write("・13:00 万代シテイでショッピング＆お昼🛍️")
-        st.write("・15:00 ホテルリブマックスにチェックイン🏨")
-        st.write("・18:00 居酒屋へ！🏮")
-        st.write("・20:30 けやき通りのイルミネーション散歩✨")
+        st.write("・11:00 新潟駅着（ホテルに荷物預ける） → ピア万代でランチ🐟")
+        st.write("・13:00 万代シテイをぶらぶら")
+        st.write("・15:00 ホテルにチェックイン🏨")
+        st.write("・18:00 居酒屋へ🏮")
+        st.write("・20:30 けやき通りのイルミネーション散歩")
 
     with st.expander("📅 2日目の流れ（12/28）"):
-        st.write("・11:00 ゆっくりチェックアウト")
-        st.write("・12:00 念願の新潟ラーメンランチ🍜")
-        st.write("・14:30 ピアBandaiや駅ビルでお土産探し🐟")
-        st.write("・17:30 最後に駅前でもう一杯🍶")
+        st.write("・10:00 ゆっくりチェックアウト")
+        st.write("・12:00 新潟ラーメンランチ🍜")
+        st.write("・14:30 駅ビルでお土産探し🐟")
+        st.write("・17:30 最後に駅前でもう一杯(ぽんしゅ館)🍶")
         st.write("・20:00 新幹線で東京へ（お疲れ様でした！）🚄")
 
-    st.subheader("🎤 あの店を思い出した？")
+    st.subheader("あの店を思い出した？")
     # 呼称を「彼」に修正
-    rapper_shop = st.text_input("お店（メモ）", placeholder="名前を思い出したらここに入力！")
+    rapper_shop = st.text_input("お店（メモ）", placeholder="居酒屋の名前がわかったらここに入力！")
     
     if st.button("プランの詳細を表示する！"):
         st.snow()
         if rapper_shop:
             st.success(f"🔥 **本命：{rapper_shop}**")
-            st.write("彼が言っていた「あの店」へ！最高の夜になりますように！")
+            st.write("「あの店」へ！")
         else:
-            st.info("💡 上のボックスにお店の名前を入れると、ここに表示されるよ！")
+            st.info("💡 上のボックスにお店の名前を入れると、ここに表示されるよ")
 
         st.subheader("🍜 2日目ランチ：新潟ラーメン")
         col1, col2 = st.columns(2)
@@ -147,4 +147,4 @@ with st.sidebar:
     st.write("---")
     st.link_button("🚕 GO（タクシー配車）", "https://go.goinc.jp/")
     st.write("---")
-    st.write("Albirex Niigata Spirit! 🦢")
+  
