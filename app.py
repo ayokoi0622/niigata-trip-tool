@@ -1,13 +1,13 @@
 import streamlit as st
 
-# --- 全体のデザイン設定（白鳥アイコン 🦢） ---
+# --- 全体のデザイン設定 ---
 st.set_page_config(
     page_title="新潟1泊2日プランナー",
     page_icon="🦢",
     layout="centered"
 )
 
-# --- オレンジ×ホワイト（視認性重視）CSS ---
+# --- CSS修正：ボタンの中の文字をオレンジに固定 ---
 st.markdown("""
 <style>
 /* 背景：アルビオレンジ */
@@ -15,43 +15,49 @@ st.markdown("""
     background-color: #FF8C00; 
 }
 
-/* テキスト全般を白に */
+/* 基本のテキストを白に */
 h1, h2, h3, p, span, label, li, .stMarkdown {
     color: #FFFFFF !important;
 }
 
-/* ボタン：白地にオレンジ文字でハッキリさせる */
+/* 【重要】ボタンの設定：白地にオレンジの太文字 */
 div.stButton > button, .stLinkButton a {
     background-color: #FFFFFF !important;
-    color: #FF8C00 !important;
     border-radius: 20px !important;
     border: none !important;
-    font-weight: bold !important;
-    display: inline-flex !important;
-    justify-content: center !important;
+    width: 100% !important;
+    height: 3em !important;
+    display: flex !important;
     align-items: center !important;
-    padding: 10px 20px !important;
+    justify-content: center !important;
     text-decoration: none !important;
-    min-height: 45px !important;
 }
 
-/* サイドバーの中の文字も白く */
+/* ボタンの中のテキストだけをオレンジ色に強制 */
+div.stButton > button div p, 
+div.stButton > button p,
+.stLinkButton a span,
+.stLinkButton a div p {
+    color: #FF8C00 !important;
+    font-weight: bold !important;
+    font-size: 1.1em !important;
+}
+
+/* サイドバーの背景と文字 */
+[data-testid="stSidebar"] {
+    background-color: #333333; /* サイドバーはあえて濃い色で引き締め */
+}
 [data-testid="stSidebar"] * {
     color: #FFFFFF !important;
 }
 
-/* タブの見た目 */
+/* タブのデザイン */
 .stTabs [data-baseweb="tab"] {
     color: #FFFFFF !important;
 }
 .stTabs [aria-selected="true"] {
-    border-bottom-color: #FFFFFF !important;
-    font-weight: bold !important;
-}
-
-/* 入力欄のラベル色 */
-.stSelectbox label, .stRadio label, .stNumberInput label, .stCheckbox label {
-    color: #FFFFFF !important;
+    background-color: rgba(255,255,255,0.2) !important;
+    border-radius: 10px 10px 0 0 !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -60,13 +66,12 @@ div.stButton > button, .stLinkButton a {
 st.title("🦢 新潟1泊2日 満喫プランナー 🦢")
 st.write("2025/12/27(土)-28(日) の新潟旅行へ！")
 
-# --- 宿泊先情報（地図ボタン修正） ---
+# --- 宿泊先情報 ---
 with st.container():
     st.markdown("### 🏨 宿泊先：ホテルリブマックス新潟駅前")
     st.write("新潟駅・万代口から徒歩圏内。拠点に最高です 。")
-    # 地図ボタン
-    st.link_button("📍 ホテルの地図をGoogleマップで開く", 
-                   "https://www.google.com/maps/search/?api=1&query=ホテルリブマックス新潟駅前")
+    # ホテル地図ボタン
+    st.link_button("📍 ホテルの場所をGoogleマップで見る", "https://www.google.com/maps/search/?api=1&query=ホテルリブマックス新潟駅前")
 
 st.divider()
 
@@ -82,7 +87,7 @@ with tab1:
         st.balloons()
         
         st.subheader("🌙 1日目夜：おすすめ居酒屋")
-        st.write("年末は混み合うので今すぐ予約を ！")
+        st.write("年末は非常に混み合うので今すぐ予約を ！")
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("### 🐟 いかの墨")
@@ -91,13 +96,13 @@ with tab1:
             st.markdown("### 🍶 五郎")
             st.link_button("📍 マップを開く", "https://www.google.com/maps/search/?api=1&query=五郎+万代店")
 
-        st.subheader("✨ イルミネーション：光のページェント")
-        st.write("駅南口・けやき通りで開催中！防寒を忘れずに 。")
-        st.link_button("📍 けやき通りの地図", "https://www.google.com/maps/search/?api=1&query=新潟駅南口+けやき通り+イルミネーション")
+        st.subheader("✨ イルミネーション")
+        st.write("駅南口・けやき通りで開催中！防寒対策を万全に 。")
+        st.link_button("📍 けやき通りの場所を確認", "https://www.google.com/maps/search/?api=1&query=新潟駅南口+けやき通り")
 
 with tab2:
     st.subheader("🧳 雪国への持ち物チェック")
-    items = ["🧣 マフラー", "🧤 手袋", "🥾 滑らない靴", "🧥 厚手のコート", "🔋 モバッテリー"]
+    items = ["🧣 マフラー", "🧤 手袋", "🥾 滑りにくい靴", "🧥 厚手のコート", "🔋 モバイルバッテリー"]
     for item in items:
         st.checkbox(item)
 
@@ -105,13 +110,13 @@ with tab3:
     st.subheader("💰 予算計算機")
     transport = st.number_input("🚄 交通費", value=20000)
     hotel = st.number_input("🏨 宿泊費", value=8000)
-    food = st.number_input("🍖 飲食・お土産", value=15000)
+    food = st.number_input("🍖 食費・お土産", value=15000)
     st.metric(label="合計予想金額", value=f"{transport + hotel + food:,} 円")
 
-# サイドバー：天気予報リンク
+# サイドバー：Yahoo!天気
 with st.sidebar:
     st.header("🌦️ お役立ち情報")
-    # 文字が見えるようにリンクをボタン化
-    st.link_button("🌡️ 新潟市の天気予報を見る", "https://tenki.jp/forecast/4/18/47604/15100/")
+    # Yahoo!天気 新潟市のページ
+    st.link_button("☀️ Yahoo!天気（新潟市）", "https://weather.yahoo.co.jp/weather/jp/15/5410.html")
     st.write("---")
     st.write("Albirex Niigata Spirit! 🦢")
