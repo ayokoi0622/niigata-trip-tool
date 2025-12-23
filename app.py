@@ -1,107 +1,150 @@
 import streamlit as st
 from datetime import date
 
-# --- デザイン設定 ---
-st.set_page_config(page_title="新潟1泊2日プランナー", page_icon="Swan", layout="centered")
+# --- デザイン設定（白鳥アイコン 🦢） ---
+st.set_page_config(
+    page_title="新潟1泊2日プランナー",
+    page_icon="🦢",
+    layout="centered"
+)
 
-# --- CSS：オレンジ背景 ＋ 白ボタン ＋ オレンジ太文字（修正版） ---
+# --- CSS：オレンジ背景 ＋ 白ボタン ＋ 濃いオレンジ太文字 ---
 st.markdown("""
 <style>
-.stApp { background-color: #FF8C00; }
-h1, h2, h3, p, span, label, li, .stMarkdown { color: #FFFFFF !important; }
+/* 背景：アルビオレンジ */
+.stApp {
+    background-color: #FF8C00; 
+}
+
+/* 基本のテキストを白に */
+h1, h2, h3, p, span, label, li, .stMarkdown {
+    color: #FFFFFF !important;
+}
+
+/* 【重要】白いボタン自体の設定 */
 div.stButton > button, .stLinkButton a {
     background-color: #FFFFFF !important;
     border-radius: 20px !important;
     border: none !important;
     width: 100% !important;
+    height: 3.5em !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
 }
-div.stButton > button p, .stLinkButton a span {
+
+/* 【重要】ボタンの中の文字を「濃いオレンジ」で固定 */
+div.stButton > button p, 
+.stLinkButton a span,
+.stLinkButton a div p {
     color: #FF4500 !important;
     font-weight: 900 !important;
+    font-size: 1.1em !important;
 }
-[data-testid="stSidebar"] { background-color: #222222; }
-[data-testid="stSidebar"] * { color: #FFFFFF !important; }
+
+/* サイドバーの設定 */
+[data-testid="stSidebar"] {
+    background-color: #222222;
+}
+[data-testid="stSidebar"] * {
+    color: #FFFFFF !important;
+}
+
+/* タブのデザイン */
+.stTabs [data-baseweb="tab"] {
+    color: #FFFFFF !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
-# --- 1. カウントダウン機能 ---
+# --- カウントダウン機能 ---
 trip_date = date(2025, 12, 27)
 today = date.today()
 days_left = (trip_date - today).days
 
 st.title("🦢 新潟1泊2日 満喫プランナー 🦢")
 if days_left > 0:
-    st.subheader(f"🚀 旅行まであと **{days_left}** 日！")
+    st.subheader(f"🚀 旅の始まりまであと **{days_left}** 日！")
 elif days_left == 0:
-    st.subheader("🎉 ついに旅行当日です！楽しんで！")
+    st.subheader("🎉 ついに当日！新潟を楽しみ尽くそう！")
 else:
-    st.subheader("❄️ 新潟旅行を楽しんでいますか？")
+    st.subheader("❄️ 新潟の旅はいかがですか？")
 
 st.divider()
 
 # タブ機能
 tab1, tab2, tab3, tab4 = st.tabs(["📋 プラン", "🧳 持ち物", "💰 予算", "🍶 日本酒メモ"])
 
-# --- タブ1：プラン & タイムライン ---
+# --- タブ1：プラン & タイムライン（20:00帰路に修正） ---
 with tab1:
     st.subheader("⏰ スケジュール")
     with st.expander("📅 1日目の流れ（12/27）"):
-        st.write("・11:00 新潟駅着 → ぽんしゅ館🍶")
-        st.write("・13:00 万代エリアでショッピング🛍️")
-        st.write("・15:00 ホテルリブマックスに荷物を置く🏨")
-        st.write("・18:00 彼氏さん本命のお店 or 居酒屋🏮")
-        st.write("・20:00 けやき通りのイルミネーション✨")
+        st.write("・11:00 新潟駅着 → ぽんしゅ館で利き酒🍶")
+        st.write("・13:00 万代シテイでショッピング＆お昼🛍️")
+        st.write("・15:00 ホテルリブマックスにチェックイン🏨")
+        st.write("・18:00 居酒屋へ！🏮")
+        st.write("・20:30 けやき通りのイルミネーション散歩✨")
 
     with st.expander("📅 2日目の流れ（12/28）"):
-        st.write("・10:00 チェックアウト")
-        st.write("・11:30 念願の新潟ラーメンランチ🍜")
-        st.write("・14:00 ピアBandaiでお土産探し🐟")
-        st.write("・16:00 新幹線で帰路へ🚄")
+        st.write("・11:00 ゆっくりチェックアウト")
+        st.write("・12:00 念願の新潟ラーメンランチ🍜")
+        st.write("・14:30 ピアBandaiや駅ビルでお土産探し🐟")
+        st.write("・17:30 最後に駅前でもう一杯🍶")
+        st.write("・20:00 新幹線で東京へ（お疲れ様でした！）🚄")
 
     st.subheader("🎤 あの店を思い出した？")
-    rapper_shop = st.text_input("お店の名前を入力！", placeholder="例：〇〇という居酒屋")
+    # 呼称を「彼」に修正
+    rapper_shop = st.text_input("お店（メモ）", placeholder="名前を思い出したらここに入力！")
     
     if st.button("プランの詳細を表示する！"):
         st.snow()
         if rapper_shop:
             st.success(f"🔥 **本命：{rapper_shop}**")
-        st.markdown("### 🍜 2日目ランチ候補：新潟5大ラーメン")
-        st.write("生姜醤油ラーメンは体が温まって冬に最適です。")
+            st.write("彼が言っていた「あの店」へ！最高の夜になりますように！")
+        else:
+            st.info("💡 上のボックスにお店の名前を入れると、ここに表示されるよ！")
+
+        st.subheader("🍜 2日目ランチ：新潟ラーメン")
         col1, col2 = st.columns(2)
         with col1:
-            st.link_button("🍜 青島食堂", "https://www.google.com/maps/search/?api=1&query=青島食堂+南万代店")
+            st.link_button("🍜 青島食堂 (生姜醤油)", "https://www.google.com/maps/search/?api=1&query=青島食堂+南万代店")
         with col2:
-            st.link_button("🍜 いっとうや", "https://www.google.com/maps/search/?api=1&query=いっとうや+CoCoLo新潟店")
+            st.link_button("🍜 いっとうや (人気店)", "https://www.google.com/maps/search/?api=1&query=いっとうや+CoCoLo新潟店")
+
+        st.subheader("✨ イルミネーション")
+        st.link_button("📍 けやき通りの場所を確認", "https://www.google.com/maps/search/?api=1&query=新潟駅南口+けやき通り+イルミネーション")
 
 # --- タブ2：持ち物リスト ---
 with tab2:
-    st.subheader("🧳 忘れ物はない？")
-    for item in ["🧣 マフラー", "🧤 手袋", "🥾 滑りにくい靴", "🧥 ダウンジャケット", "🔋 モバイルバッテリー"]:
+    st.subheader("🧳 雪国への準備")
+    items = ["🧣 マフラー", "🧤 手袋", "🥾 滑りにくい靴", "🧥 ダウンジャケット", "🔋 モバイルバッテリー"]
+    for item in items:
         st.checkbox(item)
+    if st.button("準備完了！"):
+        st.snow()
 
 # --- タブ3：予算計算 ---
 with tab3:
-    st.subheader("💰 お金計算")
-    transport = st.number_input("交通費", value=20000)
-    hotel = st.number_input("宿泊費", value=8000)
-    food = st.number_input("飲食代", value=15000)
-    st.metric("合計予想", f"{transport + hotel + food:,} 円")
+    st.subheader("💰 予算シミュレーション")
+    transport = st.number_input("🚄 交通費", value=20000)
+    hotel_cost = st.number_input("🏨 宿泊費", value=8000)
+    food_cost = st.number_input("🍖 飲食代", value=15000)
+    st.metric(label="合計予想金額", value=f"{transport + hotel_cost + food_cost:,} 円")
 
-# --- タブ4：日本酒メモ（新機能） ---
+# --- タブ4：日本酒メモ ---
 with tab4:
     st.subheader("🍶 ぽんしゅ館・利き酒メモ")
-    st.write("駅ビルの「ぽんしゅ館」で気に入ったお酒をメモしておこう！")
-    sake_name = st.text_input("お酒の名前")
-    sake_score = st.slider("お気に入り度", 1, 5, 3)
-    if st.button("メモを保存（画面上のみ）"):
-        st.write(f"📝 メモしました！: **{sake_name}** (評価: {'⭐' * sake_score})")
+    sake_name = st.text_input("飲んだお酒の名前")
+    sake_score = st.slider("評価", 1, 5, 3)
+    if st.button("メモを保存"):
+        st.write(f"📝 **{sake_name}** ({'⭐' * sake_score})")
 
 # サイドバー
 with st.sidebar:
     st.header("🌦️ 寒さ・移動対策")
-    st.link_button("☀️ Yahoo!天気", "https://weather.yahoo.co.jp/weather/jp/15/5410.html")
+    st.link_button("☀️ Yahoo!天気（新潟市）", "https://weather.yahoo.co.jp/weather/jp/15/5410.html")
     st.write("---")
-    st.write("雪で歩けない時は無理せずタクシーを！")
     st.link_button("🚕 GO（タクシー配車）", "https://go.goinc.jp/")
     st.write("---")
     st.write("Albirex Niigata Spirit! 🦢")
