@@ -84,7 +84,7 @@ with tab1:
     lunch_pref = st.selectbox("Q2. 2日目のランチは？", ["贅沢海鮮", "タレかつ/へぎそば", "お洒落カフェ"])
 
     if st.button("この気分でプランを作成する！"):
-        st.balloons()
+        st.snow()
         
         st.subheader("🌙 1日目夜：おすすめ居酒屋")
         st.write("年末は非常に混み合うので今すぐ予約を ！")
