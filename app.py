@@ -65,7 +65,7 @@ days_left = (trip_date - today).days
 
 st.title("🦢 新潟1泊2日 プランナー 🦢")
 if days_left > 0:
-    st.subheader(f"🚀 始まりまであと **{days_left}** 日")
+    st.subheader(f"🚀 始まりまであと **{days_left}** 日.")
 elif days_left == 0:
     st.subheader("🎉 ついに当日")
 else:
