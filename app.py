@@ -67,9 +67,9 @@ st.title("🦢 新潟1泊2日 プランナー 🦢")
 if days_left > 0:
     st.subheader(f"🚀 始まりまであと **{days_left}** 日")
 elif days_left == 0:
-    st.subheader("🎉 ついに当日！")
+    st.subheader("🎉 ついに当日")
 else:
-    st.subheader("❄️ 新潟の旅はいかがですか？")
+    st.subheader("❄️ 新潟の旅は")
 
 st.divider()
 
