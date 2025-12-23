@@ -128,7 +128,7 @@ with tab2:
 with tab3:
     st.subheader("💰 予算シミュレーション")
     transport = st.number_input("🚄 交通費", value=20000)
-    hotel_cost = st.number_input("🏨 宿泊費", value=8000)
+    hotel_cost = st.number_input("🏨 宿泊費", value=6000)
     food_cost = st.number_input("🍖 飲食代", value=15000)
     st.metric(label="合計予想金額", value=f"{transport + hotel_cost + food_cost:,} 円")
 
