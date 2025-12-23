@@ -59,12 +59,12 @@ div.stButton > button p,
 
 # --- アプリの中身 ---
 st.title("🦢 新潟1泊2日 満喫プランナー 🦢")
-st.write("2025/12/27(土)-28(日) ダウンを着て最高の聖地巡礼を！")
+st.write("2025/12/27(土)-28(日)")
 
 # --- 宿泊先情報 ---
 with st.container():
     st.markdown("### 🏨 宿泊先：ホテルリブマックス新潟駅前")
-    st.write("新潟駅・万代口からすぐ。拠点に最高です 。")
+    st.write("新潟駅・万代口からすぐ。")
     st.link_button("📍 ホテルの場所をGoogleマップで見る", "https://www.google.com/maps/search/?api=1&query=ホテルリブマックス新潟駅前")
 
 st.divider()
@@ -74,7 +74,7 @@ tab1, tab2, tab3 = st.tabs(["📋 プラン作成", "🧳 持ち物リスト", "
 
 # --- タブ1：プラン作成 ---
 with tab1:
-    st.subheader("🎤 あのアーティストお気に入りのお店")
+    st.subheader("🎤 ラッパーが行ってたお気に入りのお店")
     rapper_shop = st.text_input("お店の名前を思い出したら入力してね！", placeholder="例：〇〇という居酒屋")
     
     st.subheader("今の気分は？ ✨")
@@ -86,7 +86,7 @@ with tab1:
         st.subheader("🌙 1日目夜：居酒屋プラン")
         if rapper_shop:
             st.success(f"🔥 **本命：{rapper_shop}**")
-            st.write("彼氏さんが言っていた「あの店」へ！年末は混み合うので予約をお忘れなく 。")
+            st.write("「あの店」へ！年末は混み合うので予約をお忘れなく 。")
         else:
             st.info("💡 上のボックスにお店の名前を入れると、ここに表示されるよ！")
 
@@ -114,7 +114,7 @@ with tab1:
         # イルミネーション
         st.divider()
         st.subheader("✨ イルミネーション：光のページェント")
-        st.write("新潟駅南口・けやき通りで開催中 。ダウンを着て歩こう ！")
+        st.write("新潟駅南口・けやき通りで開催中 。ダウンを着て！")
         st.link_button("📍 けやき通りの場所を確認", "https://www.google.com/maps/search/?api=1&query=新潟駅南口+けやき通り")
 
 # --- タブ2：持ち物リスト ---
@@ -139,4 +139,4 @@ with st.sidebar:
     st.header("🌦️ お役立ち情報")
     st.link_button("☀️ Yahoo!天気（新潟市）", "https://weather.yahoo.co.jp/weather/jp/15/5410.html")
     st.write("---")
-    st.write("Albirex Niigata Spirit! 🦢")
+    
