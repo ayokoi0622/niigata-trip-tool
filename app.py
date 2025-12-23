@@ -69,7 +69,7 @@ st.write("2025/12/27(土)-28(日) の新潟旅行へ！")
 # --- 宿泊先情報 ---
 with st.container():
     st.markdown("### 🏨 宿泊先：ホテルリブマックス新潟駅前")
-    st.write("新潟駅・万代口から徒歩圏内。拠点に最高です 。")
+    st.write("新潟駅・万代口から徒歩圏内。拠点に最高 。")
     # ホテル地図ボタン
     st.link_button("📍 ホテルの場所をGoogleマップで見る", "https://www.google.com/maps/search/?api=1&query=ホテルリブマックス新潟駅前")
 
