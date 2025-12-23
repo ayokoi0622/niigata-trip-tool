@@ -1,17 +1,26 @@
 import streamlit as st
 
-# --- 全体のデザイン設定（白鳥アイコン 🦢） ---
+# --- 全体のデザイン設定 ---
 st.set_page_config(
     page_title="新潟1泊2日プランナー",
     page_icon="🦢",
     layout="centered"
 )
 
-# --- CSS：オレンジ背景 ＋ 白ボタン ＋ オレンジ太文字 ---
+# --- CSS修正：白いボタンの中の文字を「濃いオレンジ」で固定 ---
 st.markdown("""
 <style>
-.stApp { background-color: #FF8C00; }
-h1, h2, h3, p, span, label, li, .stMarkdown { color: #FFFFFF !important; }
+/* 背景：アルビオレンジ */
+.stApp {
+    background-color: #FF8C00; 
+}
+
+/* 基本のテキストを白に */
+h1, h2, h3, p, span, label, li, .stMarkdown {
+    color: #FFFFFF !important;
+}
+
+/* 【重要】白いボタン自体の設定 */
 div.stButton > button, .stLinkButton a {
     background-color: #FFFFFF !important;
     border-radius: 20px !important;
@@ -21,25 +30,41 @@ div.stButton > button, .stLinkButton a {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    text-decoration: none !important;
 }
-div.stButton > button p, .stLinkButton a span {
-    color: #FF8C00 !important;
-    font-weight: bold !important;
-    font-size: 1.1em !important;
+
+/* 【重要】ボタンの中の文字だけを「濃いオレンジ」に強制 */
+div.stButton > button p, 
+.stLinkButton a span,
+.stLinkButton a div p {
+    color: #FF4500 !important; /* より濃いオレンジ（朱色に近い） */
+    font-weight: 900 !important; /* 極太 */
+    font-size: 1.2em !important;
 }
-[data-testid="stSidebar"] { background-color: #333333; }
-[data-testid="stSidebar"] * { color: #FFFFFF !important; }
-.stTabs [data-baseweb="tab"] { color: #FFFFFF !important; }
+
+/* サイドバーの設定 */
+[data-testid="stSidebar"] {
+    background-color: #222222;
+}
+[data-testid="stSidebar"] * {
+    color: #FFFFFF !important;
+}
+
+/* タブの文字 */
+.stTabs [data-baseweb="tab"] {
+    color: #FFFFFF !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
 # --- アプリの中身 ---
 st.title("🦢 新潟1泊2日 満喫プランナー 🦢")
-st.write("2025/12/27(土)-28(日) 大切な思い出の地を巡る旅")
+st.write("2025/12/27(土)-28(日) ダウンを着て最高の聖地巡礼を！")
 
 # --- 宿泊先情報 ---
 with st.container():
     st.markdown("### 🏨 宿泊先：ホテルリブマックス新潟駅前")
+    st.write("新潟駅・万代口からすぐ。拠点に最高です 。")
     st.link_button("📍 ホテルの場所をGoogleマップで見る", "https://www.google.com/maps/search/?api=1&query=ホテルリブマックス新潟駅前")
 
 st.divider()
@@ -50,25 +75,22 @@ tab1, tab2, tab3 = st.tabs(["📋 プラン作成", "🧳 持ち物リスト", "
 # --- タブ1：プラン作成 ---
 with tab1:
     st.subheader("🎤 あのアーティストお気に入りのお店")
-    # メモ機能：ここに入力した文字が下のプランに反映されます
     rapper_shop = st.text_input("お店の名前を思い出したら入力してね！", placeholder="例：〇〇という居酒屋")
     
     st.subheader("今の気分は？ ✨")
     mood = st.radio("どんな旅にしたい？", ["食い倒れ！", "のんびり散策", "お洒落スポット巡り"])
 
     if st.button("この気分でプランを作成する！"):
-        st.snow() # 雪を降らせます！
+        st.snow()
         
-        # 1日目夜の案内
         st.subheader("🌙 1日目夜：居酒屋プラン")
-        
         if rapper_shop:
             st.success(f"🔥 **本命：{rapper_shop}**")
-            st.write("彼氏さんが言っていた「あの店」へ！最高の夜になりますように！")
+            st.write("彼氏さんが言っていた「あの店」へ！年末は混み合うので予約をお忘れなく 。")
         else:
-            st.info("💡 上のボックスにお店の名前を入力すると、ここに表示されるよ！")
+            st.info("💡 上のボックスにお店の名前を入れると、ここに表示されるよ！")
 
-        st.write("▼ もし予約が取れなかった時のためのバックアップ店")
+        st.write("▼ 駅前で安定して美味しい有名店はこちら")
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("### 🐟 いかの墨")
@@ -80,20 +102,20 @@ with tab1:
         # 2日目ラーメン
         st.divider()
         st.subheader("🍜 2日目ランチ：新潟ラーメン！")
-        st.write("寒い日はやっぱりラーメン！人気店をピックアップしました。")
+        st.write("寒い日は、体を温める生姜醤油系がイチオシです 。")
         col3, col4 = st.columns(2)
         with col3:
-            st.markdown("### 🍜 青島食堂 (生姜醤油)")
-            st.link_button("📍 マップ", "https://www.google.com/maps/search/?api=1&query=五郎+万代店+新潟県新潟市中央区東大通2-3-153")
+            st.markdown("### 🍜 青島食堂 (南万代店)")
+            st.link_button("📍 マップ", "https://www.google.com/maps/search/?api=1&query=青島食堂+南万代店")
         with col4:
-            st.markdown("### 🍜 いっとうや (人気店)")
-            st.link_button("📍 マップ", "https://www.google.com/maps/search/?api=1&query=五郎+万代店+新潟県新潟市中央区東大通2-3-154")
+            st.markdown("### 🍜 いっとうや (駅構内)")
+            st.link_button("📍 マップ", "https://www.google.com/maps/search/?api=1&query=いっとうや+CoCoLo新潟店")
 
         # イルミネーション
         st.divider()
         st.subheader("✨ イルミネーション：光のページェント")
-        st.write("駅南口・けやき通りで開催中。ダウンを着て歩こう！")
-        st.link_button("📍 場所を確認", "https://www.google.com/maps/search/?api=1&query=新潟駅南口+けやき通り+イルミネーション")
+        st.write("新潟駅南口・けやき通りで開催中 。ダウンを着て歩こう ！")
+        st.link_button("📍 けやき通りの場所を確認", "https://www.google.com/maps/search/?api=1&query=新潟駅南口+けやき通り")
 
 # --- タブ2：持ち物リスト ---
 with tab2:
@@ -108,9 +130,9 @@ with tab2:
 with tab3:
     st.subheader("💰 予算計算機")
     transport = st.number_input("🚄 交通費", value=20000)
-    hotel = st.number_input("🏨 宿泊費", value=8000)
-    food = st.number_input("🍖 飲食代", value=15000)
-    st.metric(label="合計予想金額", value=f"{transport + hotel + food:,} 円")
+    hotel_cost = st.number_input("🏨 宿泊費", value=8000)
+    food_cost = st.number_input("🍖 飲食代", value=15000)
+    st.metric(label="合計予想金額", value=f"{transport + hotel_cost + food_cost:,} 円")
 
 # サイドバー
 with st.sidebar:
